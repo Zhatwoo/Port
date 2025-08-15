@@ -4,24 +4,24 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen min-h-[600px] bg-[#0F131C] text-white py-0 flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[600px] bg-[#0F131C] text-white py-0 flex items-center overflow-hidden h-auto md:h-screen">
       {/* Floating Background Layer */}
       <BackgroundDecor />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center h-full min-h-[600px] md:min-h-0">
         {/* Left Side */}
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight drop-shadow-xl">
+  <div className="space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start justify-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight drop-shadow-xl">
             <span className="text-green-600">Computer Engineer</span> &{" "}
             <span className="text-yellow-500">Forex Trader</span>
           </h1>
-          <p className="text-lg text-gray-300 max-w-xl drop-shadow-sm">
+          <p className="text-base sm:text-lg text-gray-300 max-w-xl drop-shadow-sm">
             Bridging the gap between engineering innovation and financial market strategies.
             Building systems that solve problems while mastering the art of market analysis.
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
             <Link href="#projects">
               <button className="bg-green-700 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold shadow-lg transition">
                 View My Projects
@@ -41,12 +41,12 @@ export default function Hero() {
         </div>
 
         {/* Right Side */}
-        <div className="relative flex flex-col items-center">
+  <div className="relative flex flex-col items-center justify-center w-full">
           {/* Glow background */}
           <div className="absolute inset-0 bg-gradient-to-tr from-yellow-500/25 via-transparent to-transparent rounded-3xl rotate-6 scale-105 blur-xl" />
           
           {/* Image */}
-          <div className="relative w-full h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+          <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 max-w-md mx-auto">
             <Image
               src="/IMAGE.jpg"
               alt="Formal Portrait"
@@ -57,19 +57,19 @@ export default function Hero() {
           </div>
 
           {/* Name */}
-   <div className="mt-6 flex flex-col items-center group cursor-pointer">
+  <div className="mt-6 flex flex-col items-center group cursor-pointer w-full">
   <span
-    className="text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-lg text-white transition-all duration-300 group-hover:scale-110 group-hover:text-yellow-400"
+    className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-lg text-white transition-all duration-300 group-hover:scale-110 group-hover:text-yellow-400"
     style={{ fontFamily: "'Cinzel', serif" }}
   >
     Neo A. Dela Torre
   </span>
   <div className="w-16 h-1 bg-gradient-to-r from-green-400 via-yellow-400 to-green-400 rounded-full my-2 transition-all duration-300 group-hover:from-yellow-400 group-hover:via-green-400 group-hover:to-yellow-400" />
   <span
-    className="text-base md:text-lg text-gray-400 font-medium tracking-wide transition-all duration-300 group-hover:text-gray-200"
+    className="text-sm sm:text-base md:text-lg text-gray-400 font-medium tracking-wide transition-all duration-300 group-hover:text-gray-200"
     style={{ fontFamily: "'Lora', serif" }}
   >
- 
+    {/* Subtitle or description can go here */}
   </span>
 </div>
 
