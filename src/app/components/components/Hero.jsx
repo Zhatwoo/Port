@@ -23,17 +23,17 @@ export default function Hero() {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start w-full">
             <Link href="#projects">
-              <button className="bg-green-700 hover:bg-green-600 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg transition w-full sm:w-auto">
+              <button className="bg-green-700 hover:bg-green-600 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg transition transform duration-300 hover:scale-110 w-full sm:w-auto">
                 View My Projects
               </button>
             </Link>
             <Link href="#trading">
-              <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg transition w-full sm:w-auto">
+              <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg transition transform duration-300 hover:scale-110 w-full sm:w-auto">
                 Explore Trading Journey
               </button>
             </Link>
             <Link href="#contact">
-              <button className="bg-transparent border border-white hover:bg-white hover:text-[#0F131C] px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg transition w-full sm:w-auto">
+              <button className="bg-transparent border border-white hover:bg-white hover:text-[#0F131C] px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg transition transform duration-300 hover:scale-110 w-full sm:w-auto">
                 Get In Touch
               </button>
             </Link>
@@ -48,19 +48,21 @@ export default function Hero() {
           {/* Image */}
           <div className="relative w-32 h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 lg:w-[400px] lg:h-[400px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 max-w-xs sm:max-w-md mx-auto">
             <Image
-              src="/IMAGE.jpg"
+              src="/3366.jpg"
               alt="Formal Portrait"
               fill
-              className="object-cover"
+              className="object-cover object-[center_30%] transition-transform duration-500 hover:scale-105 rounded-3xl"
               priority
             />
           </div>
 
           {/* Name */}
           <div className="mt-4 sm:mt-6 flex flex-col items-center group cursor-pointer w-full">
-            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold tracking-wide drop-shadow-lg text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-400 font-serif">
-              Neo A. Dela Torre
-            </span>
+            <Link href="#about" scroll={true}>
+              <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold tracking-wide drop-shadow-lg text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-400 font-serif">
+                Neo A. Dela Torre
+              </span>
+            </Link>
             <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-green-400 via-yellow-400 to-green-400 rounded-full my-2 transition-all duration-300 group-hover:from-yellow-400 group-hover:via-green-400 group-hover:to-yellow-400" />
             <span className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 font-medium tracking-wide transition-all duration-300 group-hover:text-gray-200 font-serif">
               {/* Subtitle can go here */}
