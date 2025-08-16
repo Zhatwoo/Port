@@ -18,7 +18,10 @@ const cardVariants = {
 
 export default function TradingProjects() {
     return (
-        <section className="relative w-full py-24 text-white overflow-hidden">
+        <section
+            id="trading"
+            className="relative w-full py-24 text-white overflow-hidden"
+        >
             {/* ===== VIDEO BACKGROUND WITH SMOOTH SLOW-MOTION ===== */}
             <video
                 autoPlay

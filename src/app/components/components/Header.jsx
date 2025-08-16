@@ -45,11 +45,18 @@ export default function Header() {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
+  const handleScrollTo = (href) => {
+    const section = document.querySelector(href);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    setMenuOpen(false); // close mobile menu after click
+  };
+
   return (
     <header
-      className={`w-full ${
-        theme === "dark" ? "bg-[#101522]" : "bg-white"
-      } text-white shadow-lg fixed top-0 left-0 z-50 border-b border-green-400/10
+      className={`w-full ${theme === "dark" ? "bg-[#101522]" : "bg-white"
+        } text-white shadow-lg fixed top-0 left-0 z-50 border-b border-green-400/10
       transition-transform duration-500 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
@@ -64,11 +71,9 @@ export default function Header() {
             priority
           />
           <span
-            className={`text-2xl font-bold tracking-wide ${
-              theme === "dark" ? "text-white" : "text-[#101522]"
-            } transition-all duration-500 ${
-              showName ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-            }`}
+            className={`text-2xl font-bold tracking-wide ${theme === "dark" ? "text-white" : "text-[#101522]"
+              } transition-all duration-500 ${showName ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+              }`}
             style={{ fontFamily: "'Playfair Display', 'Montserrat', serif" }}
           >
             Neo Dela Torre
@@ -78,20 +83,18 @@ export default function Header() {
         {/* Desktop nav */}
         <div className="hidden md:flex gap-6 items-center">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.href}
-              href={link.href}
-              className={`transition font-medium cursor-pointer ${
-                active === link.href
-                  ? "text-yellow-400 border-b-2 border-yellow-400"
-                  : theme === "dark"
+              onClick={() => handleScrollTo(link.href)}
+              className={`transition font-medium cursor-pointer ${active === link.href
+                ? "text-yellow-400 border-b-2 border-yellow-400"
+                : theme === "dark"
                   ? "text-white hover:text-green-400"
                   : "text-[#101522] hover:text-green-600"
-              }`}
-              style={{ scrollBehavior: "smooth" }}
+                }`}
             >
               {link.label}
-            </a>
+            </button>
           ))}
 
           <a
@@ -126,11 +129,10 @@ export default function Header() {
             aria-label="Toggle theme"
           >
             <span
-              className={`absolute left-1 top-1 w-4 h-4 rounded-full transition-transform duration-300 ${
-                theme === "dark"
-                  ? "bg-yellow-400 translate-x-0"
-                  : "bg-green-600 translate-x-6"
-              }`}
+              className={`absolute left-1 top-1 w-4 h-4 rounded-full transition-transform duration-300 ${theme === "dark"
+                ? "bg-yellow-400 translate-x-0"
+                : "bg-green-600 translate-x-6"
+                }`}
               style={{ boxShadow: "0 0 4px rgba(0,0,0,0.2)" }}
             />
           </button>
@@ -154,20 +156,18 @@ export default function Header() {
         <div className="md:hidden bg-[#101522] text-white shadow-lg border-t border-green-400/10">
           <div className="flex flex-col gap-4 px-6 py-4">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={`transition font-medium cursor-pointer ${
-                  active === link.href
-                    ? "text-yellow-400"
-                    : "text-white hover:text-green-400"
-                }`}
-                style={{ scrollBehavior: "smooth" }}
+                onClick={() => handleScrollTo(link.href)}
+                className={`transition font-medium cursor-pointer ${active === link.href
+                  ? "text-yellow-400"
+                  : "text-white hover:text-green-400"
+                  }`}
               >
                 {link.label}
-              </a>
+              </button>
             ))}
+
             <a
               href="/cv.pdf"
               target="_blank"
@@ -199,11 +199,10 @@ export default function Header() {
               aria-label="Toggle theme"
             >
               <span
-                className={`absolute left-1 top-1 w-4 h-4 rounded-full transition-transform duration-300 ${
-                  theme === "dark"
-                    ? "bg-yellow-400 translate-x-0"
-                    : "bg-green-600 translate-x-6"
-                }`}
+                className={`absolute left-1 top-1 w-4 h-4 rounded-full transition-transform duration-300 ${theme === "dark"
+                  ? "bg-yellow-400 translate-x-0"
+                  : "bg-green-600 translate-x-6"
+                  }`}
                 style={{ boxShadow: "0 0 4px rgba(0,0,0,0.2)" }}
               />
             </button>
