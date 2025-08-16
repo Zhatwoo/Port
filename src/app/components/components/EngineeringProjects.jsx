@@ -61,7 +61,7 @@ const EngineeringProjects = () => {
   };
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="projects" className="relative py-20 overflow-hidden">
       {/* PCB & blueprint background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0a0f1f] to-[#101522]">
         {[...Array(30)].map((_, i) => (
