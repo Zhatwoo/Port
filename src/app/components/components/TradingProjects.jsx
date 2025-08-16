@@ -18,11 +18,22 @@ const cardVariants = {
 
 export default function TradingProjects() {
     return (
-        <section className="bg-[#0d111b] py-24 text-white">
+        <section className="relative w-full py-24 text-white overflow-hidden">
+            {/* ===== VIDEO BACKGROUND WITH SMOOTH SLOW-MOTION ===== */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover brightness-[1.2] saturate-110 animate-slowpan-smoother"
+                src="/tradingbg1.mp4"
+            />
 
+            {/* Overlay for contrast (lighter for mobile) */}
+            <div className="absolute inset-0 bg-black/25 sm:bg-black/50"></div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-
+            {/* Content */}
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
                 {/* Header */}
                 <motion.header
                     initial={{ opacity: 0, y: -50 }}
@@ -32,7 +43,7 @@ export default function TradingProjects() {
                     className="text-center mb-20"
                 >
                     <h2 className="text-5xl font-extrabold text-yellow-500 mb-4">Trading Journey</h2>
-                    <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         Combining an engineering mindset with market expertise, I’ve spent two years developing consistent and sustainable trading strategies.
                     </p>
                 </motion.header>
@@ -42,7 +53,7 @@ export default function TradingProjects() {
                     {tradingItems.map((item, index) => (
                         <motion.div
                             key={index}
-                            className="bg-[#1E1E1E] rounded-2xl p-10 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transform transition duration-500 hover:scale-105"
+                            className="bg-[#1E1E1E]/80 rounded-2xl p-10 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transform transition duration-500 hover:scale-105 backdrop-blur-md"
                             initial="offscreen"
                             whileInView="onscreen"
                             viewport={{ once: true, amount: 0.3 }}
@@ -51,7 +62,7 @@ export default function TradingProjects() {
                         >
                             <div className="mb-5">{item.icon}</div>
                             <h3 className="text-2xl font-semibold text-white mb-3">{item.title}</h3>
-                            <p className="text-gray-400 text-sm mb-6">{item.description}</p>
+                            <p className="text-gray-300 text-sm mb-6">{item.description}</p>
                             <button className="bg-yellow-500 text-black font-bold py-2 px-6 rounded-full text-sm hover:bg-yellow-400 transition duration-300">{item.buttonText}</button>
                         </motion.div>
                     ))}
@@ -105,7 +116,7 @@ export default function TradingProjects() {
                                 { phase: "Strategy Execution", desc: "Systematic approach with predefined entry/exit criteria and risk parameters", tags: ["Position Sizing Calculator", "Risk Management Rules", "Trade Journal"] },
                                 { phase: "Performance Review", desc: "Regular analysis of trading performance with continuous strategy optimization", tags: ["Excel Analytics", "Performance Metrics", "Strategy Refinement"] },
                             ].map((item, idx) => (
-                                <motion.div key={idx} className="bg-[#181818] rounded-2xl p-6 shadow-md hover:shadow-lg transition duration-300">
+                                <motion.div key={idx} className="bg-[#181818]/80 rounded-2xl p-6 shadow-md hover:shadow-lg transition duration-300 backdrop-blur-md">
                                     <h4 className="text-green-400 font-bold mb-2 text-lg">{item.phase}</h4>
                                     <p className="text-gray-300 mb-3 text-sm">{item.desc}</p>
                                     <div className="flex flex-wrap gap-2 text-xs">
@@ -123,15 +134,26 @@ export default function TradingProjects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
-                    className="bg-[#181818] rounded-2xl p-8 mt-20 text-center max-w-3xl mx-auto shadow-md hover:shadow-lg transition duration-300"
+                    className="bg-[#181818]/80 rounded-2xl p-8 mt-20 text-center max-w-3xl mx-auto shadow-md hover:shadow-lg transition duration-300 backdrop-blur-md"
                 >
                     <h4 className="text-green-400 font-bold mb-4 text-xl">Professional Approach</h4>
                     <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                         My trading approach emphasizes risk management, systematic analysis, and continuous learning. While maintaining strict confidentiality around specific performance metrics, I focus on developing sustainable strategies that combine technical expertise with market psychology.
                     </p>
                 </motion.div>
-
             </div>
+
+            {/* ===== SMOOTH SLOW-MOTION VIDEO ANIMATION ===== */}
+            <style jsx>{`
+                @keyframes smooth-slowpan {
+                    0% { transform: scale(1) translateX(0) translateY(0); }
+                    50% { transform: scale(1.02) translateX(-0.5%) translateY(-0.5%); }
+                    100% { transform: scale(1) translateX(0) translateY(0); }
+                }
+                .animate-slowpan-smoother {
+                    animation: smooth-slowpan 400s ease-in-out infinite; /* <- slow & smooth */
+                }
+            `}</style>
         </section>
     );
 }
