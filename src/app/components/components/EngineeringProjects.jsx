@@ -48,54 +48,55 @@ const EngineeringProjects = () => {
     },
   ];
 
-  // Variants for entrance and exit
   const cardVariants = {
-    offscreen: { opacity: 0, y: 50 },
+    offscreen: { opacity: 0, y: 80, scale: 0.95, rotate: -1 },
     onscreen: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", bounce: 0.3, duration: 0.6 },
+      scale: 1,
+      rotate: 0,
+      transition: { type: "spring", bounce: 0.3, duration: 0.7 },
     },
-    exit: { opacity: 0, y: 50, transition: { duration: 0.5 } },
+    exit: { opacity: 0, y: 80, scale: 0.95, rotate: 1, transition: { duration: 0.5 } },
   };
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="projects" className="relative py-20 overflow-hidden">
       {/* PCB & blueprint background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0a0f1f] to-[#101522]">
         {[...Array(30)].map((_, i) => (
           <div
             key={`v-${i}`}
-            className="absolute top-0 bottom-0 w-[1px] bg-cyan-500/10"
+            className="absolute top-0 bottom-0 w-[1px] bg-cyan-500/20 animate-pulse-fast"
             style={{ left: `${(i / 30) * 100}%` }}
           />
         ))}
         {[...Array(20)].map((_, i) => (
           <div
             key={`h-${i}`}
-            className="absolute left-0 right-0 h-[1px] bg-cyan-500/10"
+            className="absolute left-0 right-0 h-[1px] bg-cyan-500/20 animate-pulse-fast"
             style={{ top: `${(i / 20) * 100}%` }}
           />
         ))}
         {[...Array(50)].map((_, i) => (
           <span
             key={`dot-${i}`}
-            className="absolute w-2 h-2 bg-green-400 rounded-full"
+            className="absolute w-3 h-3 bg-green-400 rounded-full animate-float-scroll"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.6 + 0.2,
+              opacity: 0.9,
             }}
           ></span>
         ))}
         {[...Array(15)].map((_, i) => {
           const symbols = ["⚡", "●", "▲", "■", "⬡"];
           const sym = symbols[Math.floor(Math.random() * symbols.length)];
-          const size = Math.random() * 18 + 10;
+          const size = Math.random() * 20 + 12;
           return (
             <span
               key={i}
-              className="absolute text-cyan-400/30 animate-float-slow"
+              className="absolute text-cyan-400/40 animate-float-scroll"
               style={{
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
@@ -112,9 +113,8 @@ const EngineeringProjects = () => {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -40 }}
+          initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -40 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
@@ -132,7 +132,7 @@ const EngineeringProjects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="relative bg-[#181e2a] rounded-3xl p-8 shadow-2xl hover:shadow-cyan-400/50 hover:scale-[1.03] hover:rotate-1 transition-transform duration-300 border-l-4 border-t-2 border-b-2 border-gradient-to-br from-green-400 via-cyan-400 to-yellow-400 overflow-hidden"
+              className="relative bg-[#181e2a] rounded-3xl p-8 shadow-2xl hover:shadow-cyan-400/50 hover:scale-[1.05] hover:rotate-1 transition-transform duration-300 border-l-4 border-t-2 border-b-2 border-gradient-to-br from-green-400 via-cyan-400 to-yellow-400 overflow-hidden"
               initial="offscreen"
               whileInView="onscreen"
               exit="exit"
@@ -140,8 +140,8 @@ const EngineeringProjects = () => {
               variants={cardVariants}
               transition={{ delay: index * 0.2 }}
             >
-              <span className="absolute top-2 right-2 w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="absolute bottom-2 left-2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+              <span className="absolute top-2 right-2 w-3 h-3 bg-green-400 rounded-full animate-pulse-fast"></span>
+              <span className="absolute bottom-2 left-2 w-3 h-3 bg-yellow-400 rounded-full animate-pulse-fast"></span>
 
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
                 <h2 className="text-xl md:text-2xl font-bold text-white">{project.title}</h2>
@@ -183,13 +183,24 @@ const EngineeringProjects = () => {
       </div>
 
       <style jsx>{`
-        @keyframes float-slow {
-          0% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-12px) rotate(180deg); }
-          100% { transform: translateY(0) rotate(360deg); }
+        /* ===== FLOATING SYMBOLS ===== */
+        @keyframes float-scroll {
+          0% { transform: translateY(0) rotate(0deg) scale(1); }
+          50% { transform: translateY(-30px) rotate(180deg) scale(1.2); }
+          100% { transform: translateY(0) rotate(360deg) scale(1); }
         }
-        .animate-float-slow {
-          animation: float-slow 12s ease-in-out infinite;
+        .animate-float-scroll {
+          animation: float-scroll 6s ease-in-out infinite;
+          opacity: 0.85;
+        }
+
+        /* ===== PULSING DOTS ===== */
+        @keyframes pulse-fast {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.7); opacity: 0.6; }
+        }
+        .animate-pulse-fast {
+          animation: pulse-fast 1s ease-in-out infinite;
         }
       `}</style>
     </section>
