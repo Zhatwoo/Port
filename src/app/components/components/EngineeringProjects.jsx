@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const EngineeringProjects = () => {
   const projects = [
@@ -59,6 +60,34 @@ const EngineeringProjects = () => {
     exit: { opacity: 0, y: 50, transition: { duration: 0.5 } },
   };
 
+  const [bgDots, setBgDots] = useState([]);
+  const [bgSymbols, setBgSymbols] = useState([]);
+
+  useEffect(() => {
+    const generatedDots = Array.from({ length: 50 }, () => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      opacity: Math.random() * 0.6 + 0.2,
+    }));
+
+    const symbolChoices = ["⚡", "●", "▲", "■", "⬡"];
+    const generatedSymbols = Array.from({ length: 15 }, () => {
+      const symbol = symbolChoices[Math.floor(Math.random() * symbolChoices.length)];
+      const sizePx = Math.random() * 18 + 10;
+      const rotateDeg = Math.random() * 360;
+      return {
+        symbol,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        fontSize: `${sizePx}px`,
+        rotateDeg,
+      };
+    });
+
+    setBgDots(generatedDots);
+    setBgSymbols(generatedSymbols);
+  }, []);
+
   return (
     <section className="relative py-20 overflow-hidden">
       {/* PCB & blueprint background */}
@@ -77,36 +106,33 @@ const EngineeringProjects = () => {
             style={{ top: `${(i / 20) * 100}%` }}
           />
         ))}
-        {[...Array(50)].map((_, i) => (
+        {bgDots.map((dot, i) => (
           <span
             key={`dot-${i}`}
             className="absolute w-2 h-2 bg-green-400 rounded-full"
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.6 + 0.2,
+              top: dot.top,
+              left: dot.left,
+              opacity: dot.opacity,
             }}
+            aria-hidden
           ></span>
         ))}
-        {[...Array(15)].map((_, i) => {
-          const symbols = ["⚡", "●", "▲", "■", "⬡"];
-          const sym = symbols[Math.floor(Math.random() * symbols.length)];
-          const size = Math.random() * 18 + 10;
-          return (
-            <span
-              key={i}
-              className="absolute text-cyan-400/30 animate-float-slow"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                fontSize: `${size}px`,
-                transform: `rotate(${Math.random() * 360}deg)`,
-              }}
-            >
-              {sym}
-            </span>
-          );
-        })}
+        {bgSymbols.map((s, i) => (
+          <span
+            key={`sym-${i}`}
+            className="absolute text-cyan-400/30 animate-float-slow"
+            style={{
+              top: s.top,
+              left: s.left,
+              fontSize: s.fontSize,
+              transform: `rotate(${s.rotateDeg}deg)`,
+            }}
+            aria-hidden
+          >
+            {s.symbol}
+          </span>
+        ))}
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -2,12 +2,24 @@
 
 import { Cpu, LineChart, Lightbulb, Shield } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function AboutMe() {
   const listVariants = {
     offscreen: { opacity: 0, y: 50 },
     onscreen: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
+
+  const [particles, setParticles] = useState([]);
+  useEffect(() => {
+    const generated = Array.from({ length: 20 }, () => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 5}s`,
+      opacity: Math.random() * 0.5 + 0.3,
+    }));
+    setParticles(generated);
+  }, []);
 
   return (
     <section
@@ -18,16 +30,16 @@ export default function AboutMe() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#101522] to-[#0f172a] animate-gradient bg-[length:400%_400%]"></div>
 
       {/* Floating particles */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+      <div className="absolute inset-0" aria-hidden>
+        {particles.map((p, i) => (
           <span
             key={i}
             className="absolute w-1 h-1 bg-green-400 rounded-full animate-float"
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: Math.random() * 0.5 + 0.3,
+              top: p.top,
+              left: p.left,
+              animationDelay: p.animationDelay,
+              opacity: p.opacity,
             }}
           />
         ))}
