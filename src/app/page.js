@@ -3,6 +3,7 @@ import AboutMe from "./components/components/AboutMe";
 import EngineeringProjects from "./components/components/EngineeringProjects";
 import TradingProjects from "./components/components/TradingProjects";
 import DualExpertise from "./components/components/DualExpertise";
+import Contacts from "./components/components/Contacts";
 export default function Home() {
   return (
     <div >
@@ -11,6 +12,8 @@ export default function Home() {
       <EngineeringProjects />
       <TradingProjects />
       <DualExpertise />
+      <Contacts/>
     </div>
+    
   );
 }
